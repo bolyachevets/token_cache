@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 service_token_cache = {}
 
+
 @app.route('/api/v1/token', methods=['GET'])
 def get_token():
     """Generate a service account token."""
@@ -27,6 +28,3 @@ def _token_not_expired(creation_date)-> bool:
     delta = os.environ['TOKEN_LIFESPAN']
     kc_token_lifespan = int(delta) - 1
     return creation_date - datetime.now() < timedelta(minutes=kc_token_lifespan)
-
-
-app.run()
