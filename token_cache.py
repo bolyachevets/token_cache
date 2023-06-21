@@ -26,5 +26,6 @@ def get_token():
 
 def _token_not_expired(creation_date)-> bool:
     span = os.environ['TOKEN_LIFESPAN']
-    kc_token_lifespan = int(span) - 1
+    margin = os.environ['TOKEN_EXPIRY_MARGIN_IN_MINS']
+    kc_token_lifespan = int(span) - int(margin)
     return datetime.now() - creation_date < timedelta(minutes=kc_token_lifespan)
