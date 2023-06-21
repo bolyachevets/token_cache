@@ -25,6 +25,6 @@ def get_token():
         return auth_response.json().get('access_token')
 
 def _token_not_expired(creation_date)-> bool:
-    delta = os.environ['TOKEN_LIFESPAN']
-    kc_token_lifespan = int(delta) - 1
-    return creation_date - datetime.now() < timedelta(minutes=kc_token_lifespan)
+    span = os.environ['TOKEN_LIFESPAN']
+    kc_token_lifespan = int(span) - 1
+    return datetime.now() - creation_date < timedelta(minutes=kc_token_lifespan)
