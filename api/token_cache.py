@@ -15,7 +15,7 @@
 from flask import Flask, request
 import requests
 import os
-from utils.cache import cache
+from api.utils.cache import cache
 
 app = Flask(__name__)
 cache.init_app(app)

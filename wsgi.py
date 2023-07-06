@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from src.token_cache import app
+from api.token_cache import app
 
 if __name__ == '__main__':
     app.run(debug=False)
