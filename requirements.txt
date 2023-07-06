@@ -2,6 +2,7 @@ Flask==1.1.4
 Flask-Caching==2.0.2
 python-dotenv==0.20.0
 MarkupSafe==2.0.1
-python3-memcached==1.51
+python-memcached==1.59
 requests==2.31.0
 gunicorn==20.1.0
+redis==4.3.6

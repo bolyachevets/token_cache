@@ -18,9 +18,19 @@ from flask_caching import Cache
 import os
 
 cache_servers = os.environ.get('CACHE_MEMCACHED_SERVERS')
-if cache_servers == None:
-    # lower case name as used by convention in most Flask apps
-    cache = Cache(config={'CACHE_TYPE': 'simple'})  # pylint: disable=invalid-name
-else:
+
+if not cache_servers == None:
     cache = Cache(config={  'CACHE_TYPE': 'MemcachedCache',
-                            'CACHE_MEMCACHED_SERVERS': cache_servers.split(',')})
+                        'CACHE_MEMCACHED_SERVERS': cache_servers.split(',') })
+else:
+
+    redis_host = os.environ.get('CACHE_REDIS_HOST')
+    redis_port = os.environ.get('CACHE_REDIS_PORT')
+
+    if not redis_host == None and not redis_port == None:
+        cache = Cache(config={  'CACHE_TYPE': 'RedisCache',
+                        'CACHE_REDIS_HOST': redis_host,
+                        'CACHE_REDIS_PORT': redis_port })
+
+    else:
+        cache = Cache(config={'CACHE_TYPE': 'simple'})  # pylint: disable=invalid-name

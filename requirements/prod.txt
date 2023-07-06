@@ -2,5 +2,6 @@ Flask
 Flask-Caching
 python-dotenv
 requests
-python3-memcached
+redis
+python-memcached
 MarkupSafe==2.0.1
