@@ -1,4 +1,5 @@
 Flask
+Flask-Caching
 python-dotenv
 requests
 MarkupSafe==2.0.1
