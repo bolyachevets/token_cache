@@ -21,7 +21,7 @@ app = Flask(__name__)
 cache.init_app(app)
 
 @app.route('/api/v1/token', methods=['GET'])
-@cache.cached(timeout=10)
+@cache.cached(timeout=100)
 def get_token():
     """Generate a service account token."""
     kc_service_id = request.args.get('client')
