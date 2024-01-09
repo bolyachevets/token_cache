@@ -1,10 +1,8 @@
 from api.token_cache import app
 import pytest
-from unittest.mock import Mock
 
-@pytest.fixture
-def mocker():
-    return Mock()
+def mock_token(x, y):
+    return "TOKEN...."
 
 @pytest.fixture
 def client():
