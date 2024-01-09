@@ -19,7 +19,7 @@ from api.utils.cache import cache
 
 def create_app():
     app = Flask(__name__)
-    # cache.init_app(app)
+    cache.init_app(app)
     return app
 
 app = create_app()
@@ -30,7 +30,7 @@ def parse_params():
     secret = request.args.get('secret')
     return get_token(client, secret)
 
-# @cache.cached(timeout=300, query_string=True)
+@cache.cached(timeout=300, query_string=True)
 def get_token(kc_service_id, kc_secret):
     """Generate a service account token."""
     issuer_url = os.environ['JWT_OIDC_ISSUER']
