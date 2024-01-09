@@ -20,12 +20,19 @@ from api.utils.cache import cache
 app = Flask(__name__)
 cache.init_app(app)
 
+def make_cache_key():
+    return request.url
+
 @app.route('/api/v1/token', methods=['GET'])
-@cache.cached(timeout=100)
-def get_token():
+def parse_params():
+    client = request.args.get('client')
+    secret = request.args.get('secret')
+    return get_token(client, secret)
+    # return get_token.uncached(client, secret)
+
+@cache.cached(timeout=300, key_prefix=make_cache_key)
+def get_token(kc_service_id, kc_secret):
     """Generate a service account token."""
-    kc_service_id = request.args.get('client')
-    kc_secret = request.args.get('secret')
     issuer_url = os.environ['JWT_OIDC_ISSUER']
     token_url = issuer_url + '/protocol/openid-connect/token'
     auth_response = requests.post(token_url, auth=(kc_service_id, kc_secret), headers={

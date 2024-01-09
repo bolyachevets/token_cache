@@ -19,18 +19,18 @@ import os
 
 cache_servers = os.environ.get('CACHE_MEMCACHED_SERVERS')
 
-if not cache_servers == None:
-    cache = Cache(config={  'CACHE_TYPE': 'MemcachedCache',
-                        'CACHE_MEMCACHED_SERVERS': cache_servers.split(',') })
+if cache_servers:
+    cache = Cache(config={'CACHE_TYPE': 'MemcachedCache',
+                        'CACHE_MEMCACHED_SERVERS': cache_servers.split(',')})
 else:
 
     redis_host = os.environ.get('CACHE_REDIS_HOST')
     redis_port = os.environ.get('CACHE_REDIS_PORT')
 
-    if not redis_host == None and not redis_port == None:
-        cache = Cache(config={  'CACHE_TYPE': 'RedisCache',
-                        'CACHE_REDIS_HOST': redis_host,
-                        'CACHE_REDIS_PORT': redis_port })
+    if redis_host and redis_port:
+        cache = Cache(config={'CACHE_TYPE': 'RedisCache',
+                            'CACHE_REDIS_HOST': redis_host,
+                            'CACHE_REDIS_PORT': redis_port})
 
     else:
         cache = Cache(config={'CACHE_TYPE': 'simple'})  # pylint: disable=invalid-name
