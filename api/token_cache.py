@@ -17,20 +17,20 @@ import requests
 import os
 from api.utils.cache import cache
 
-app = Flask(__name__)
-cache.init_app(app)
+def create_app():
+    app = Flask(__name__)
+    # cache.init_app(app)
+    return app
 
-def make_cache_key():
-    return request.url
+app = create_app()
 
 @app.route('/api/v1/token', methods=['GET'])
 def parse_params():
     client = request.args.get('client')
     secret = request.args.get('secret')
     return get_token(client, secret)
-    # return get_token.uncached(client, secret)
 
-@cache.cached(timeout=300, key_prefix=make_cache_key)
+# @cache.cached(timeout=300, query_string=True)
 def get_token(kc_service_id, kc_secret):
     """Generate a service account token."""
     issuer_url = os.environ['JWT_OIDC_ISSUER']
