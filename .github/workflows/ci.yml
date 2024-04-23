@@ -21,5 +21,5 @@ jobs:
         with:
           flags: smart-tests
           verbose: true
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
+          url: https://codecov-dev.apps.gold.devops.gov.bc.ca
