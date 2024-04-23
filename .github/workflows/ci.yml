@@ -15,11 +15,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements/dev.txt
       - name: Run tests and collect coverage
-        run: pytest --cov app ${{ env.CODECOV_ATS_TESTS }}
+        run: pytest --cov=auth_api tests/
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          name: codecov-name-request
+          name: codecov-run
           url: https://codecov-dev.apps.gold.devops.gov.bc.ca
           token: ${{ secrets.CODECOV_TOKEN }}
           verbose: true
+          file: ./coverage.xml
