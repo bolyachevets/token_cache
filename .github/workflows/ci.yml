@@ -17,9 +17,9 @@ jobs:
       - name: Run tests and collect coverage
         run: pytest --cov app ${{ env.CODECOV_ATS_TESTS }}
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v3
         with:
-          flags: smart-tests
-          verbose: true
-          token: ${{ secrets.CODECOV_TOKEN }}
+          name: codecov-name-request
           url: https://codecov-dev.apps.gold.devops.gov.bc.ca
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true
