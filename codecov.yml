@@ -1,13 +1,27 @@
-flag_management:
-  individual_flags:
-    - name: smart-tests
-      carryforward: true
-      carryforward_mode: "labels"
-      statuses:
-        - type: "project"
-        - type: "patch"
+codecov:
+  require_ci_to_pass: true
+  branch: main
+  max_report_age: false
 
-cli:
-  plugins:
-    pycoverage:
-      report_type: "json"
+comment:
+  layout: "diff,flags,tree"
+  behavior: default
+  require_changes: true
+
+coverage:
+  precision: 2
+  round: down
+  range: "70...100"
+  status:
+    patch: false
+
+ignore:
+  - "^/tests/**/*" # ignore test harness code
+
+parsers:
+  gcov:
+    branch_detection:
+      conditional: true
+      loop: true
+      method: false
+      macro: false
