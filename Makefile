@@ -1,8 +1,8 @@
 MKFILE_PATH:=$(abspath $(lastword $(MAKEFILE_LIST)))
 CURRENT_ABS_DIR:=$(patsubst %/,%,$(dir $(MKFILE_PATH)))
 
-PROJECT_NAME:=auth_api
-DOCKER_NAME:=auth-api
+PROJECT_NAME:=token-cache
+DOCKER_NAME:=token-cache
 
 #################################################################################
 # COMMANDS -- Setup                                                             #
